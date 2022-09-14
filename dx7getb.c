@@ -31,6 +31,7 @@ Place, Suite 330, Boston, MA 02111-1307, USA.
 #include <unistd.h>
 
 #include "common.h"
+#include "version.h"
 
 
 #define ch 0
@@ -48,7 +49,11 @@ static int debug = 0;
 int main (int argc, char *argv[])
 {
   int passive = 0;
+#ifdef __FreeBSD__
+  const char *midi_pathname = "/dev/umidi0.0";
+#else
   const char *midi_pathname = "/dev/midi";
+#endif
   FILE *midi_fp = NULL;
 
   {
