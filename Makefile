@@ -26,30 +26,10 @@ install:
 clean:
 	rm -f $(OBJECTS) version.h
 
-dist:
-	rm -rf $(ARC)
-	mkdir $(ARC)
-	tar cf -		\
-	    CHANGES		\
-	    COPYING		\
-	    Makefile		\
-	    README		\
-	    TODO		\
-	    VERSION		\
-	    common.c		\
-	    common.h		\
-	    doc/dx7getb.1	\
-	    docsrc/dx7getb.1	\
-	    dx7getb.c		\
-	    scripts/process	\
-	    version.c		\
-	  | (cd $(ARC) && tar xf -)
-	tar -cf - $(ARC) | gzip >$(ARC).tar.gz
-
 doc/dx7getb.1: docsrc/dx7getb.1 VERSION scripts/process
 	scripts/process docsrc/dx7getb.1 >$@
 
 
-version.h: VERSION
-	printf 'const char version[] = "%s";\n' "$(VERSION)" >$@ || rm -f $@
+version.h: 
+	@printf 'const char version[] = "%s";\n' "$(VERSION)" >$@ || rm -f $@
 
