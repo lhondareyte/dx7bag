@@ -32,4 +32,3 @@ install: all
 clean:
 	rm -f $(OBJECTS) version.h $(PRG) $(PRG).1
 
-.PHONY man
