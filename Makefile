@@ -14,7 +14,7 @@ VERSION != cat VERSION
 CFLAGS  = -Wall -O2
 
 
-all: version.h dx7getb doc/dx7getb.1
+all: version.h dx7getb doc
 
 $(PRG): $(OBJECTS)
 	$(CC) $(OBJECTS) -o $@
@@ -22,7 +22,7 @@ $(PRG): $(OBJECTS)
 version.h: 
 	@printf 'const char version[] = "%s";\n' "$(VERSION)" >$@ || rm -f $@
 
-man: 
+doc: 
 	scripts/process man/$(PRG).1 > $(PRG).1
 
 install: all
@@ -30,5 +30,6 @@ install: all
 	install -m 644  $(PRG).1 $(PREFIX)/man/man1/
 
 clean:
-	rm -f $(OBJECTS) version.h $(PRG)
+	rm -f $(OBJECTS) version.h $(PRG) $(PRG).1
 
+.PHONY man
