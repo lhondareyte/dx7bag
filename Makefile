@@ -11,15 +11,17 @@ OBJECTS = common.o dx7getb.o
 # Variables that you don't want to change
 VERSION != cat VERSION
 ARC      = dx7bag-$(VERSION)
+CFLAGS  = -Wall -O2
 
 
 all: version.h dx7getb doc/dx7getb.1
 
+dx7getb: $(OBJECTS)
+	$(CC) $(OBJECTS) -o $@
+
 install:
-	cp dx7getb $(PREFIX)/bin/
-	touch -r dx7getb $(PREFIX)/bin/dx7getb
-	cp doc/dx7getb.1 $(PREFIX)/man/man1/
-	touch -r doc/dx7getb.1 $(PREFIX)/man/man1/dx7getb.1
+	install -m 755  dx7getb $(PREFIX)/bin/
+	install -m 644  doc/dx7getb.1 $(PREFIX)/man/man1/
 
 clean:
 	rm -f $(OBJECTS) version.h
@@ -44,15 +46,9 @@ dist:
 	  | (cd $(ARC) && tar xf -)
 	tar -cf - $(ARC) | gzip >$(ARC).tar.gz
 
-
-common.o: common.h
-
-dx7getb: $(OBJECTS)
-
 doc/dx7getb.1: docsrc/dx7getb.1 VERSION scripts/process
 	scripts/process docsrc/dx7getb.1 >$@
 
-dx7getb.o: common.h
 
 version.h: VERSION
 	printf 'const char version[] = "%s";\n' "$(VERSION)" >$@ || rm -f $@
