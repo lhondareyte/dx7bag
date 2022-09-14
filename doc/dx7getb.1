@@ -1,0 +1,60 @@
+.TH DX7GETB 1 2002-07-28 "dx7bag 0.2.0"
+.SH NAME
+dx7getb \- get a bank dump from a DX7
+.SH SYNOPSIS
+.B dx7getb \-\-help
+.br
+.B dx7getb \-\-version
+.br
+.B dx7getb
+.RB [ \-dp ]
+.RB [ \-m
+.IR file ]
+.SH DESCRIPTION
+Send a bank dump request to a Yamaha DX7 or compatible device via MIDI and
+write the reply to standard output.
+The reply is written without any modification, in SYSEX format (4104 bytes).
+.SH OPTIONS
+.TP
+.B \-d
+Debug mode.
+Print received MIDI data and events to standard error.
+.TP
+.B \-\-help
+Print usage to standard output and exit successfully.
+This option is recognised only if it's the only argument on the command line.
+.TP
+.BI \-m \ file
+Use \fIfile\fP as the MIDI device.
+Default is \fB/dev/midi\fP.
+.TP
+.B \-p
+Passive mode.
+Don't try to get the DX7 to send any data, just wait passively for a bank dump
+to arrive.
+It's the user's responsibility to initiate the dump, for example by pressing
+.RB [ func ]
+.RB [ 8 ]
+.RB [ 8 ]
+.RB [ yes ]
+.RB [ 8 ]
+.RB [ yes ]
+on the DX7's panel.
+.TP
+.B \-\-version
+Print version number to standard output and exit successfully.
+This option is recognised only if it's the only argument on the command line.
+.SH EXIT STATUS
+\fB0\fP	OK
+.br
+\fB>0\fP	Errors occurred
+.SH EXAMPLES
+Save the current bank in your DX7 to \fBdump.syx\fP\ :
+
+  $ \fBdx7getb >dump.syx\fP
+.SH BUGS
+There is no timeout\ ; dx7getb will wait for an answer forever.
+.SH AUTHOR
+André Majorel <URL:http://www.teaser.fr/~amajorel/>
+.SH SEE ALSO
+.BR dx7putb (1)

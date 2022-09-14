@@ -1,0 +1,33 @@
+To-do list for dx7bag
+---------------------
+
+- dx7gete
+
+- dx7getv
+
+- dx7putb
+
+- dx7pute
+
+- dx7putv
+
+- Support the Dxheaven .tx7 format
+
+- Support raw dumps
+
+- dx7get?: -o to write directly to file
+
+- Better debugging mode (print what's sent as well).
+
+- Specify the channel
+
+- Implement timeout
+
+- dx7mv to move a voice from bank to bank
+
+- Syntax file/voicenum
+
+- dx7ls - list contents of bank
+
+- dx7diff - compare two voices or banks
+

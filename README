@@ -1,0 +1,39 @@
+dx7bag - utilities for the Yamaha DX7
+
+DESCRIPTION
+
+  dx7bag is a collection of utilities for the Yamaha DX7 and
+  compatible devices such as the DX1, DX5, DX7s, DX7II, DX7IIFD,
+  TX7, TX802 and TX816. For the moment, there is no support for
+  features not in the original, unmodified DX7. In particular,
+  E! is not supported.
+
+  dx7bag contains the following programs:
+
+    dx7getb - get a bank dump from a DX7
+
+PREREQUISITES
+
+  - A Unix-like operating system.
+
+  - A C compiler.
+
+  - Some device similar to OSS /dev/midi that you can open in
+    read/write mode for MIDI I/O.
+
+COMPILING AND INSTALLING
+
+  To compile :                  make
+  To install in /usr/local :    make install
+  To install in ~joe/dx7bag :   make PREFIX=~joe/dx7bag install
+
+LEGAL
+
+  dx7bag is copyright André Majorel 2002 and available under the
+  terms of the GNU General Public License version 2. See COPYING
+  for details.
+
+HOME PAGE
+
+  http://www.teaser.fr/~amajorel/dx7bag/
+

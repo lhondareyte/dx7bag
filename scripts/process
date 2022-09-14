@@ -1,0 +1,45 @@
+#!/usr/bin/perl -w
+#
+#	process - process a man page
+#	AYM 2002-07-28
+#
+
+# Replace all occurrences of
+# - @{SELF_DATE} by the file's mtime, in yyyy-mm-dd format,
+# - @{VERSION} by dx7bag's version number
+
+
+use strict;
+
+
+if (@ARGV != 1)
+{
+  print STDERR "usage: process file\n";
+  exit 1;
+}
+
+# Retrieve the value of @{SELF_DATE}
+my $self_date;
+{
+  my @s = stat $ARGV[0];
+  die "$ARGV[0]: $!" if ! @s;
+  my @t = gmtime $s[9];
+  $self_date = sprintf '%04d-%02d-%02d', 1900 + $t[5], 1 + $t[4], $t[3];
+}
+
+# Retrieve the value of @{VERSION}
+if (! open VERSION, "VERSION")
+{
+  print STDERR "VERSION: $!\n";
+  exit 1;
+}
+my $version = <VERSION>;
+chomp $version;
+close VERSION;
+
+# Filter the file
+undef $/;
+my $text = <>;
+$text =~ s/\@{SELF_DATE}/$self_date/g;
+$text =~ s/\@{VERSION}/$version/g;
+print $text;
