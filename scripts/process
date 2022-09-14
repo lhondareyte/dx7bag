@@ -1,4 +1,4 @@
-#!/usr/bin/perl -w
+#!/usr/bin/env perl
 #
 #	process - process a man page
 #	AYM 2002-07-28
@@ -9,6 +9,7 @@
 # - @{VERSION} by dx7bag's version number
 
 
+use warnings;
 use strict;
 
 
@@ -40,6 +41,6 @@ close VERSION;
 # Filter the file
 undef $/;
 my $text = <>;
-$text =~ s/\@{SELF_DATE}/$self_date/g;
-$text =~ s/\@{VERSION}/$version/g;
+$text =~ s/\@\{SELF_DATE\}/$self_date/g;
+$text =~ s/\@\{VERSION\}/$version/g;
 print $text;
