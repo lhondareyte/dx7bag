@@ -1,2 +1,3 @@
 *.o
 dx7getb
+version.h
