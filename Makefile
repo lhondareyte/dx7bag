@@ -3,16 +3,14 @@
 #	AYM 2002-07-26
 #
 
-
 # Variables that you may want to change
 PRG     = dx7getb
 PREFIX  = /usr/local
-OBJECTS = common.o dx7getb.o 
-
-# Variables that you don't want to change
-VERSION != cat VERSION
 CFLAGS  = -Wall -O2
 
+# Variables that you don't want to change
+OBJECTS = common.o dx7getb.o 
+VERSION != cat VERSION
 
 all: version.h dx7getb doc
 
